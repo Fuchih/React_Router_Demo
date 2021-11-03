@@ -15,17 +15,24 @@ export default class Message extends Component {
     return (
       <React.Fragment>
         <ul style={{ listStyle: 'none' }}>
-          {
-            messageArr.map((msgObj) => {
-              return (
-                <li key={msgObj.id} style={{margin:'5px 0'}}>
-                  <Link to={`/home/message/detail/${msgObj.id}/${msgObj.title}`}>{msgObj.title}</Link>
-                </li>
-              )
-            })
-          }
+          {messageArr.map((msgObj) => {
+            return (
+              <li key={msgObj.id} style={{ margin: '5px 0' }}>
+                {/*<Link to={`/home/message/detail/${msgObj.id}/${msgObj.title}`}>{msgObj.title}</Link>*/}
+
+                {/*<Link to={`/home/message/detail/?id=${msgObj.id}&title=${msgObj.title}`}>{msgObj.title}</Link>*/}
+
+                <Link to={{ pathname: '/home/message/detail', state: { id: msgObj.id, title: msgObj.title } }}>{msgObj.title}</Link>
+              </li>
+            )
+          })}
         </ul>
-        <Route path="/home/message/detail/:id/:title" component={Detail} />
+
+        {/*<Route path="/home/message/detail/:id/:title" component={Detail} />*/}
+
+        {/*<Route path="/home/message/detail" component={Detail} />*/}
+
+        <Route path="/home/message/detail" component={Detail} />
       </React.Fragment>
     )
   }
